@@ -18,8 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         cardDiv.innerHTML = `
             <div class="card-inner">
-            <div class="card-front">${card.question}</div>
-            <div class="card-back">${card.answer}</div>
+            <div class="card-front">${card.q}</div>
+            <div class="card-back">${card.a}</div>
             </div>
         `;
 
