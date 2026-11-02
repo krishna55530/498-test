@@ -35,8 +35,8 @@ function updateCard() {
     
     // Delay to match visuals
     setTimeout(() => {
-    frontElement.textContent = flashcards[currentIndex].question;
-    backElement.textContent = flashcards[currentIndex].answer;
+    frontElement.textContent = flashcards[currentIndex].q;
+    backElement.textContent = flashcards[currentIndex].a;
     counterElement.textContent = `${currentIndex + 1} / ${flashcards.length}`;
     }, 150);
 }
