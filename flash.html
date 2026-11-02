@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="flashStyle.css">
-        <script src="flash.js" defer></script> <!-- need defer? -->
+        <script src="flash.js"></script> <!-- need defer? -->
     </head>
     <body>
-        <!--button id="begin">Begin</button-->
+        <!-- flashcards -->
+        <div id="card-container" onclick="flipCard()">
+            <div class="card" id="flashcard">
+                <div class="face front" id="front">Question loading...</div>
+                <div class="face back" id="back">Answer loading...</div>
+            </div>
+        </div>
 
-        <div id="flashcard-container">
-            <!-- Cards will be placed here by javascript -->
+        <!-- Navigation Buttons -->
+        <div class="controls">
+            <button id="prev" onclick="prevCard()">Previous</button>
+            <span id="counter">1 / 1</span>
+            <button id="next" onclick="nextCard()">Next</button>
         </div>
     </body>
 </html>
