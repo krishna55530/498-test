@@ -44,7 +44,7 @@ function flipCard() {
 }
 
 function nextCard() {
-    //cardElement.classList.remove("flipped");
+    cardElement.classList.remove("flipped");
     currentIndex = (currentIndex + 1) % flashcards.length;
     updateCard();
 }
