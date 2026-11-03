@@ -40,11 +40,15 @@ function updateCard() {
 }
 
 function flipCard() {
-    cardElement.classList.toggle("flipped");
+    //cardElement.classList.toggle("flipped");
+
+    //flashcards[currentIndex].flipped = !flashcards[currentIndex].flipped;
+    //flashcards[currentIndex].flipped ? cardElement.classList.add("flipped") : cardElement.classList.remove("flipped");
+    flashcards[currentIndex].classList.toggle("flipped");
 }
 
 function nextCard() {
-    cardElement.classList.remove("flipped"); //?
+    //cardElement.classList.remove("flipped");
     currentIndex = (currentIndex + 1) % flashcards.length;
     updateCard();
 }
