@@ -29,15 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
     updateCard();
 });
 
-/*function updateCard() {
-    const currentCard = flashcards[currentIndex];
-    //Reset flip state before updating text
-    currentCard.classList.remove('flipped');
-    frontElement.textContent = currentCard.q;
-    backElement.textContent = currentCard.a;
-    counterElement.textContent = `${currentIndex + 1} / ${flashcards.length}`;
-}*/
-
 function updateCard() {
     // Unflip
     cardElement.classList.remove("flipped");
