@@ -1,6 +1,6 @@
 
 :root {
-    --primary: #4f46e5;
+    --primary: #3f4cdb;
     --bg: #f3f4f6;
     --card-bg: #fff;
     --text: #1f2937;
@@ -112,7 +112,7 @@ button:hover {
     
     /* Optional styling to make it look nice */
     padding: 10px 20px;
-    background-color: #007BFF;
+    background-color: #2168ff;
     color: white;
     border: none;
     border-radius: 5px;
