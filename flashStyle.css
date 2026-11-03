@@ -103,3 +103,18 @@ button:hover {
     color: #4b5563;
     font-weight: 500;
 }
+
+.home {
+    position: fixed;
+    top: 15px;      /* Spacing from the top edge */
+    left: 15px;     /* Spacing from the left edge */
+    z-index: 1000;  /* Keeps the button on top of other content */
+    
+    /* Optional styling to make it look nice */
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
