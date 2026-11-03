@@ -43,8 +43,8 @@ function flipCard() {
     //cardElement.classList.toggle("flipped");
 
     //flashcards[currentIndex].flipped = !flashcards[currentIndex].flipped;
-    //flashcards[currentIndex].flipped ? cardElement.classList.add("flipped") : cardElement.classList.remove("flipped");
-    flashcards[currentIndex].classList.toggle("flipped");
+    flashcards[currentIndex].flipped ? cardElement.classList.add("flipped") : cardElement.classList.remove("flipped");
+    //flashcards[currentIndex].classList.toggle("flipped");
 }
 
 function nextCard() {
