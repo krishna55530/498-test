@@ -1,4 +1,323 @@
+:root {
+    color-scheme: light;
 
+    --bg: #f7f5ff;
+    --surface: #ffffff;
+    --ink: #27234b;
+    --muted: #666584;
+    --border: #e7e0fa;
+    --accent: #7355d8;
+    --accent-strong: #5736bd;
+    --shadow: 0 12px 28px rgba(73, 49, 132, .09);
+}
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+
+    --bg: #18172a;
+    --surface: #25233a;
+    --ink: #f8f5ff;
+    --muted: #c2bdd8;
+    --border: #48415f;
+    --accent: #b6a2ff;
+    --accent-strong: #c5b6ff;
+    --shadow: 0 12px 30px rgba(0, 0, 0, .18);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background:
+        radial-gradient(
+            ellipse at 13% 10%,
+            rgba(181, 161, 255, .27),
+            transparent 52%
+        ),
+        radial-gradient(
+            ellipse at 88% 16%,
+            rgba(117, 215, 244, .25),
+            transparent 48%
+        ),
+        var(--bg);
+
+    color: var(--ink);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 100vh;
+    margin: 0;
+    padding: 75px 20px;
+
+    transition: background .2s, color .2s;
+}
+
+/* Heading */
+
+h1 {
+    font-size: clamp(30px, 4vw, 42px);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    margin: 0 0 35px;
+
+    background: linear-gradient(
+        115deg,
+        #7753d7,
+        #5e83e9,
+        #58b9e8
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Flashcard container */
+
+.card-container {
+    width: 520px;
+    height: 320px;
+    max-width: 100%;
+    perspective: 1200px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* Flashcard */
+
+.flashcard {
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    transform-style: preserve-3d;
+
+    transition: transform .6s cubic-bezier(
+        .4, 0, .2, 1
+    );
+
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+}
+
+.flashcard.flipped {
+    transform: rotateY(180deg);
+}
+
+/* Both sides */
+
+.face {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 45px;
+
+    border-radius: 24px;
+    backface-visibility: hidden;
+
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.55;
+
+    text-align: center;
+    overflow-wrap: anywhere;
+
+    box-shadow: var(--shadow);
+}
+
+/* Question side */
+
+.front {
+    color: var(--ink);
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+}
+
+/* Answer side */
+
+.back {
+    background: linear-gradient(
+        135deg,
+        #7753d7 0%,
+        #5e83e9 58%,
+        #58b9e8 100%
+    );
+
+    color: white;
+    transform: rotateY(180deg);
+}
+
+/* Navigation controls */
+
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+
+    margin-top: 38px;
+}
+
+/* Buttons */
+
+button {
+    background: var(--surface);
+    color: var(--ink);
+
+    border: 1.5px solid var(--border);
+    padding: 13px 24px;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 750;
+
+    border-radius: 12px;
+    cursor: pointer;
+
+    transition:
+        transform .18s ease,
+        background .18s ease,
+        border-color .18s ease,
+        box-shadow .18s ease;
+}
+
+button:hover {
+    border-color: var(--accent);
+    color: var(--accent-strong);
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 8px 18px rgba(73, 49, 132, .10);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button:focus-visible {
+    outline: 3px solid #efc85b;
+    outline-offset: 3px;
+}
+
+/* Counter */
+
+#counter {
+    font-size: 15px;
+    color: var(--muted);
+    font-weight: 800;
+    min-width: 55px;
+    text-align: center;
+}
+
+/* Home button */
+
+.home {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+
+    padding: 12px 22px;
+
+    background: linear-gradient(
+        115deg,
+        #7753d7,
+        #5e83e9,
+        #58b9e8
+    );
+
+    color: white;
+    border: none;
+    border-radius: 12px;
+
+    font-size: 14px;
+    font-weight: 750;
+
+    box-shadow: 0 8px 20px rgba(89, 89, 195, .20);
+}
+
+.home:hover {
+    color: white;
+    box-shadow: 0 12px 24px rgba(89, 89, 195, .28);
+}
+
+/* Mobile responsiveness */
+
+@media (max-width: 600px) {
+    body {
+        padding: 85px 18px 45px;
+    }
+
+    h1 {
+        font-size: 30px;
+        margin-bottom: 28px;
+    }
+
+    .card-container {
+        width: 100%;
+        max-width: 450px;
+        height: 280px;
+    }
+
+    .face {
+        padding: 25px;
+        font-size: 20px;
+    }
+
+    .controls {
+        gap: 12px;
+        margin-top: 30px;
+    }
+
+    button {
+        padding: 11px 17px;
+        font-size: 13px;
+    }
+
+    .home {
+        top: 15px;
+        left: 15px;
+    }
+}
+
+@media (max-width: 380px) {
+    .card-container {
+        height: 250px;
+    }
+
+    .face {
+        font-size: 18px;
+        padding: 20px;
+    }
+
+    .controls {
+        gap: 8px;
+    }
+}
+
+/* Reduced motion accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+    }
+}
+
+
+
+
+/* OLD VERSION OF THE CSS FILE. THIS IS KEPT FOR REFERENCE PURPOSES. */
 :root {
     --primary: #3f4cdb;
     --bg: #f3f4f6;
@@ -24,7 +343,7 @@ h1 {
     margin-bottom: 5px;
 }
 
-/* Flashcard */
+
 .card-container {
     width: 350px;
     height: 220px;
@@ -74,7 +393,7 @@ h1 {
     transform: rotateY(180deg);
 }
 
-/* Controls */
+
 .controls {
     display: flex;
     align-items: center;
@@ -106,15 +425,15 @@ button:hover {
 
 .home {
     position: fixed;
-    top: 15px;      /* Spacing from the top edge */
-    left: 15px;     /* Spacing from the left edge */
-    z-index: 1000;  /* Keeps the button on top of other content */
+    top: 15px;      
+    left: 15px;     
+    z-index: 1000;  
     
-    /* Optional styling to make it look nice */
+   
     padding: 10px 20px;
     background-color: #2168ff;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-}
+}*/
