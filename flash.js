@@ -1,136 +1,55 @@
-let flashcards = [];
-let currentIndex = 0;
+//https://dev.to/michael-gokey/flip-for-knowledge-building-a-flashcard-game-with-html-css-javascript-3o9j
 
+/* EVENTUALLY
+const response = await fetch("/api/flashcards");
+    const flashcards = await response.json();
+Change onclick to event handlers
+*/
+
+const flashcards = [{q: "مرحبا", a: "Hello"},{q: "كبير", a: "Big"},{q: "صغير", a: "Small"},
+    {q: "جميل", a: "Beautiful"}, {q: "تفاحة", a: "Apple"}, {q: "برتقال", a: "Orange"}, {q: "موز", a: "Banana"},
+    {q: "أحمر", a: "Red"},{q: "أزرق", a: "Blue"},{q: "أخضر", a: "Green"}, {q: "أصفر", a: "Yellow"},{q: "أسود", a: "Black"},{q: "أبيض", a: "White"},
+    {q: "قطة", a: "Cat"},{q: "كلب", a: "Dog"},{q: "حصان", a: "Horse"},{q: "فأر", a: "Mouse"},{q: "عصفور", a: "Bird"},
+    {q: "سيارة", a: "Car"},{q: "دراجة", a: "Bicycle"},{q: "حافلة", a: "Bus"},{q: "قطار", a: "Train"},{q: "طائرة", a: "Airplane"},
+    {q: "بيت", a: "House"},{q: "شقة", a: "Apartment"},{q: "غرفة", a: "Room"},{q: "مطبخ", a: "Kitchen"},{q: "حمام", a: "Bathroom"},
+    {q: "كتاب", a: "Book"},{q: "قلم", a: "Pen"},{q: "ورقة", a: "Paper"},{q: "دفتر", a: "Notebook"},{q: "ممحاة", a: "Eraser"}
+];
+
+let currentIndex = 0;
 const cardElement = document.getElementById('flashcard');
 const frontElement = document.getElementById('front');
 const backElement = document.getElementById('back');
+//const prevBtn = document.getElementById('prev');
+//const nextBtn = document.getElementById('next');
 const counterElement = document.getElementById('counter');
+//const container = document.getElementById("card-container"); //need?
 
-const prevButton = document.getElementById("prev");
-const nextButton = document.getElementById("next");
-
-// -----------------------------------------
-// Load saved phrases from Chrome storage
-// -----------------------------------------
-
-async function loadFlashcards() {
-    frontElement.textContent = "Loading Flashcards...";
-    backElement.textContent = "";
-
-    try {
-        const phrases = await chrome.storage.local.get(null);
-
-        flashcards = Object.entries(phrases)
-            .filter(([key, value]) => {
-                return (
-                    key.startsWith("phrase:") &&
-                    (
-                        typeof value?.original === "string" ||
-                        typeof value?.text === "string"
-                    )
-                );
-            })
-            .map(([, value]) => {
-                    return {
-                        question: value.originalText || value.text,
-                        answer: value.translatedWord || value.definition || ""
-                    };
-                })
-            .filter(card => card.question.trim() && card.answer.trim());
-
-            //start with the first card
-            currentIndex = 0;
-            updateCard();
-    } catch (error) {
-        console.error("Error loading flashcards:", error);
-
-        frontElement.textContent = "Error loading flashcards.";
-        backElement.textContent = "";
-        counterElement.textContent = "0 / 0";
-    }
-}
-
-// -----------------------------------------
-// Display current flashcard
-// -----------------------------------------
+document.addEventListener("DOMContentLoaded", () => {
+    //load initial
+    updateCard();
+});
 
 function updateCard() {
     // Unflip
     cardElement.classList.remove("flipped");
-
-    if (flashcards.length === 0) {
-        frontElement.textContent = "No flashcards available.";
-        backElement.textContent = "";
-        counterElement.textContent = "0 / 0";
-
-        prevButton.disabled = true;
-        nextButton.disabled = true;
-
-        return;
-    }
     
     const card = flashcards[currentIndex];
-
-    frontElement.textContent = card.question;
-    backElement.textContent = card.answer;
+    frontElement.textContent = card.q;
+    backElement.textContent = card.a;
     counterElement.textContent = `${currentIndex + 1} / ${flashcards.length}`;
-
-    prevButton.disabled = false;
-    nextButton.disabled = false;
 }
 
-// -----------------------------------------
-// Flip card
-// -----------------------------------------
-
 function flipCard() {
-    if (flashcards.length === 0) return;
     cardElement.classList.toggle("flipped");
 }
 
-// -----------------------------------------
-// Next card
-// -----------------------------------------
-
 function nextCard() {
-    if (flashcards.length === 0) return;
+    cardElement.classList.remove("flipped");
     currentIndex = (currentIndex + 1) % flashcards.length;
     updateCard();
 }
 
-// -----------------------------------------
-// Previous card
-// -----------------------------------------
-
 function prevCard() {
-    if (flashcards.length === 0) return;
     currentIndex = (currentIndex - 1 + flashcards.length) % flashcards.length;
     updateCard();
 }
-
-// -----------------------------------------
-// Listen for changes to saved phrases
-// -----------------------------------------
-
-chrome.storage.onChanged.addListener((changes, area) => {
-    if (
-        area === "local" &&
-        Object.keys(changes).some(key => key.startsWith("phrase:"))
-    ) {
-        void loadFlashcards();
-    }
-});
-
-// -----------------------------------------
-// Event listeners
-// -----------------------------------------
-
-document.addEventListener("DOMContentLoaded", () => {
-    document.querySelector(".card-container")
-        .addEventListener("click", flipCard);
-
-    prevButton.addEventListener("click", prevCard);
-    nextButton.addEventListener("click", nextCard);
-
-    void loadFlashcards();
-});
