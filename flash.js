@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function updateCard() {
     // Unflip
-    cardElement.classList.add("no-transition");
+    //cardElement.classList.add("no-transition");
     cardElement.classList.remove("flipped");
     
     const card = flashcards[currentIndex];
@@ -39,7 +39,7 @@ function updateCard() {
     backElement.textContent = card.a;
     counterElement.textContent = `${currentIndex + 1} / ${flashcards.length}`;
 
-    cardElement.classList.remove("no-transition");
+    //cardElement.classList.remove("no-transition");
 }
 
 function flipCard() {
@@ -47,6 +47,9 @@ function flipCard() {
 }
 
 function nextCard() {
+    if (flashcards[currentIndex].flipped) {
+        flipCard()
+    }
     currentIndex = (currentIndex + 1) % flashcards.length;
     updateCard();
 }
