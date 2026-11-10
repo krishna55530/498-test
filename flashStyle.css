@@ -87,6 +87,11 @@ h1 {
     transform: rotateY(180deg);
 }
 
+/* Instantly reset card when changing cards */
+.flashcard.no-transition {
+    transition: none !important;
+}
+
 /* Card faces */
 
 .face {
