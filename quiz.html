@@ -1,9 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link rel="stylesheet" href="quizStyle.css">
+        <link rel="stylesheet" href="style.css">
+        <!--use as much of flashcss as possible-->
         <script src="quiz.js" defer></script>
     </head>
     <body>
+        <h1>Matching Quiz</h1> <!-- other options later -->
+        <a href="index.html"><button class="home">Home</button></a> <!--SAVED.HTML-->
+
+        <!-- quiz -->
+        <!-- duolingo style. color when selected and in response
+            to accuracy. then disable. 6 words? -->
+        <div class="word-container" onclick="select()">
+            <div class="word" id="word">Word loading...</div>
+        </div>
+
+        <div class="translation-container" onclick="verify()">
+            <div class="translation" id="translation">Translation loading...</div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="controls">
+            <span id="counter">0 / 0</span> <!--words out of total saved that have been seen-->
+            <button id="next" onclick="newQuiz()">Next</button>
+        </div>
     </body>
 </html>
