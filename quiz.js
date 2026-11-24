@@ -89,11 +89,11 @@ function match() {
 }
 
 function newQuiz() {
+    for (i = 0; i < 6; i++) {
+        wordElements[index + i].textContent = words[index + i].a;
+        transElements[index + i].textContent = words[index + i].q;
+    }
+
     index = index + 6;
     counterElement.textContent = `${index} / ${total}`;
-
-    for (i = index - 6; i < index; i++) {
-        wordElements[i].textContent = words[i].a;
-        transElements[i].textContent = words[i].q;
-    }
 }

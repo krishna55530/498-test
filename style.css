@@ -171,6 +171,52 @@ button:hover {
     border-color: var(--accent-strong);
 }
 
+.word {
+    background: var(--surface);
+    color: var(--ink);
+
+    border: 1.5px solid var(--border);
+    padding: 12px 23px;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 750;
+
+    border-radius: 12px;
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.word:hover {
+    border-color: var(--accent);
+    color: var(--accent-strong);
+    box-shadow: 0 8px 18px rgba(73, 49, 132, .10);
+}
+
+.translation {
+    background: var(--surface);
+    color: var(--ink);
+
+    border: 1.5px solid var(--border);
+    padding: 12px 23px;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 750;
+
+    border-radius: 12px;
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.translation:hover {
+    border-color: var(--accent);
+    color: var(--accent-strong);
+    box-shadow: 0 8px 18px rgba(73, 49, 132, .10);
+}
+
 /* Counter */
 
 #counter {
