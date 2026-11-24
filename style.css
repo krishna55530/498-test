@@ -164,10 +164,7 @@ button:hover {
     box-shadow: 0 8px 18px rgba(73, 49, 132, .10);
 }
 
-/* Quizzes - CHANGE. selected stuff should be green.
-        word and trans should be similar to mini flashcards */
-/* Quizzes - selected answers should be green.
-   Words and translations should look like mini flashcards. */
+/* Quizzes */
 
 .selected {
     background: #d9f5e3;
