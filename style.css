@@ -165,6 +165,14 @@ button:hover {
 }
 
 /* Quizzes */
+.quiz {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    column-gap: 2em;
+    row-gap: 0.75em;
+    justify-content: center;
+    align-items: center;
+}
 
 .selected {
     background: #d9f5e3;
