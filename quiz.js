@@ -89,11 +89,17 @@ function match() {
 }
 
 function newQuiz() {
-    for (i = 0; i < 6; i++) {
+    if (index + 6 > total) {
+        let n = total - index;
+    } else {
+        n = 6;
+    }
+
+    for (i = 0; i < n; i++) {
         wordElements[index + i].textContent = words[index + i].a;
         transElements[index + i].textContent = words[index + i].q;
     }
 
-    index = index + 6;
+    index = index + n;
     counterElement.textContent = `${index} / ${total}`;
 }
